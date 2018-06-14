@@ -15,13 +15,17 @@ defmodule DungeonCrawl.CLI.HeroChoice do
     |> Shell.prompt
     |> parse_answer
     |> find_one_by_index(heroes)
-    |> confirm_hero
+    |> ask_for_confirmation
+    |> confirm
   end
 
-  defp confirm_hero(chosen_hero) do
+  defp ask_for_confirmation(chosen_hero) do
     Shell.cmd("clear")
     Shell.info(chosen_hero.description)
-    if Shell.yes?("confirm"), do: chosen_hero, else: start()
+    answer = Shell.yes?("confirm")
+    {answer, chosen_hero}
   end
 
+  defp confirm({ true, chosen_hero }), do: chosen_hero
+  defp confirm(_), do: start()
 end
