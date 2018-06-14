@@ -8,14 +8,21 @@ defmodule DungeonCrawl.CLI.RoomActionsChoice do
 
     Shell.info(room.description())
 
-    chosen_action = 
-      room_actions
-      |> display_options           # show the options ot the user
-      |> generate_question         # ask user for an option
-      |> Shell.prompt              # waiting user input
-      |> parse_answer              # parse the user answer
-      |> find_one_by_index(room_actions) # search for an action with the user answer
-
+    chosen_action = select_action(room_actions)
     {room, chosen_action}
+  end
+
+  defp select_action([]) do
+    Shell.prompt("continue")
+    :forward
+  end
+  defp select_action(actions) do
+    chosen_action = 
+      actions
+      |> display_options            # show the options ot the user
+      |> generate_question          # ask user for an option
+      |> Shell.prompt               # waiting user input
+      |> parse_answer               # parse the user answer
+      |> find_one_by_index(actions) # search for an action with the user answer
   end
 end

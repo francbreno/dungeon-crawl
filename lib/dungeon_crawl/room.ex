@@ -17,15 +17,15 @@ defmodule DungeonCrawl.Room do
       actions: [fight(), forward()],
       trigger: Triggers.Enemy
     },
-    # %Room{
-    #   description: "You enter the room, but could not avoid to get an arrow on the knee",
-    #   actions: [forward()],
-    #   trigger: Triggers.Trap
-    # },
     %Room{
       description: "There's a secret chest in the room. You can open it, but caution. Every secret has a price",
       actions: [open(), forward()],
       trigger: Triggers.Secret
-    }
+    },
+    %Room{
+      description: "It's a trap!!!",
+      actions: [],
+      trigger: Triggers.Trap
+    },
   ]
 end
