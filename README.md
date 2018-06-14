@@ -1,6 +1,6 @@
 # DungeonCrawl
 
-A dungeon game created in the book Functional Programming with Elixir
+A dungeon game created in the book Learn Functional Programming with Elixir
 
 ## Installation
 
